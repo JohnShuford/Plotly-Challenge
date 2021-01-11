@@ -80,6 +80,45 @@ function buildGraph (idNumber) {
     
         // clearing out any existing data
 
+        // Horizontal Bar Chart
+        var barTrace = {
+            x: sampleValues,
+            y: otuIds,
+            type: 'bar',
+            orientation: "h",
+            text: otuLabels,
+            marker: {
+              color: 'rgb(142,124,195)'
+            }
+        };
+
+        var barData = [barTrace];
+
+        var barLayout = {
+            title: "Belly Button Bar"
+        };
+
+        Plotly.newPlot('bar', barData, barLayout);
+        
+        // Bubble Chart
+        var bubbleTrace = {
+            x: otuIds,
+            y: sampleValues,
+            mode: 'markers',
+            marker: {
+              size: sampleValues
+            }
+          };
+
+        var bubbleData = [bubbleTrace];
+
+        var bubbleLayout = {
+            title: "This is a bubble chart"
+        };
+
+        Plotly.newPlot('bubble', bubbleData, bubbleLayout)
+
+
     });
 
 }
