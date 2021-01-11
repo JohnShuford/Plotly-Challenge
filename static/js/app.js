@@ -82,13 +82,13 @@ function buildGraph (idNumber) {
 
         // Horizontal Bar Chart
         var barTrace = {
-            x: sampleValues,
-            y: otuIds,
+            x: sampleValues.slice(0,10).reverse(),
+            y: otuIds.map(otu_ids => `OTU ${otu_ids}`).slice(0,10).reverse(),
             type: 'bar',
             orientation: "h",
-            text: otuLabels,
+            text: otuLabels.slice(0,10).reverse(),
             marker: {
-              color: 'rgb(142,124,195)'
+              color: 'rgb(112, 148, 219)'
             }
         };
 
@@ -105,8 +105,11 @@ function buildGraph (idNumber) {
             x: otuIds,
             y: sampleValues,
             mode: 'markers',
+            text: otuLabels,
             marker: {
-              size: sampleValues
+              size: sampleValues,
+              color: otuIds,
+              colorscale: "Earth"
             }
           };
 
