@@ -95,7 +95,9 @@ function buildGraph (idNumber) {
         var barData = [barTrace];
 
         var barLayout = {
-            title: "Belly Button Bar"
+            title: "Top Bacteria per Belly Button",
+            xaxis: {title: "Sample Value"},
+            yaxis: {title: "OTU ID's"}
         };
 
         Plotly.newPlot('bar', barData, barLayout);
@@ -116,7 +118,9 @@ function buildGraph (idNumber) {
         var bubbleData = [bubbleTrace];
 
         var bubbleLayout = {
-            title: "This is a bubble chart"
+            title: "Bacteria Counts per Belly Button",
+            xaxis: {title: "OTU ID"},
+            yaxis: {title: "Sample Values"}
         };
 
         Plotly.newPlot('bubble', bubbleData, bubbleLayout)
