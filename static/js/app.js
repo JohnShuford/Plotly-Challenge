@@ -24,25 +24,36 @@ function populateDropdown(){
 
 
 // the main function that will do the dirty work of getting everything goin'
-function optionChanged(value){
-    console.log(value)
+function optionChanged(idNumber){
+    console.log(idNumber)
     
     // call the funcions
-    demInfo(value);
-    buildGraph(value);
+    demInfo(idNumber);
+    buildGraph(idNumber);
 
 }
 
 
-// the function that will build the table
-function demInfo (value) {
+// demographic info fuction
+function demInfo (idNumber) {
+    // d3 select of the metadata div
     var demList = d3.select("#sample-metadata");
+
+    // importing the JSON with d3
     d3.json('samples.json').then((data) => {
+        // getting the metadata
         var metadata = data.metadata;
-        var filtered = metadata.filter(d => d.id == value);
-        console.log(filtered[0]);
+
+        // filtering metadata along the idNumber
+        var filtered = metadata.filter(d => d.id == idNumber);
+
+        // getting the filtered data
         filtered = filtered[0];
+
+        // clearing out any existing data
         demList.html("");
+
+        // iteraing throught the object and appending the 
         Object.entries(filtered).forEach(([key,value]) => {
             demList.append("h6").text(`${key} : ${value}`);
         });
@@ -53,10 +64,21 @@ function demInfo (value) {
 }
 
 // the function that will build the graphs
-function buildGraph (value) {
+function buildGraph (idNumber) {
     // filter through the samples
     d3.json('samples.json').then((data) => {
+        // getting the metadata
+        var sampleData = data.samples;
 
+        // filtering metadata along the idNumber
+        var filtered = sampleData.filter(d => d.id == idNumber);
+
+        // getting the otu ids, sample values and otu labels
+        var otuIds = filtered[0]['otu_ids'];
+        var sampleValues = filtered[0]['sample_values']
+        var otuLabels = filtered[0]['otu_labels']
+    
+        // clearing out any existing data
 
     });
 
