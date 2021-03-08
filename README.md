@@ -1,15 +1,6 @@
-# Plotly-Challenge
-In this challenge we were tasked with creating an interactive dash board to represent the bellybutton bacteria found inside the navels of the study participants.
+[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/john-shuford-data-analyst/]
 
-
-![Alt text](images/DemInfo_BarChart.png?raw=true "Title")
-![Alt text](images/BubbleChart.png?raw=true "Title")
-![Alt text](images/DropDown.png?raw=true "Title")
-
-
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-Using HTML and Bootstrap I built and deployed a web page to visualize an analysis performed on weather data comparing the effect of latitude on several other primary weather indicators. Take a look the deployed site [Here](https://johnshuford.github.io/Web-Design-Challenge/)!
+In this challenge we were tasked with creating an interactive dash board to represent the bellybutton bacteria found inside the navels of the study participants [Here](https://johnshuford.github.io/Web-Design-Challenge/)!
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -28,7 +19,6 @@ Using HTML and Bootstrap I built and deployed a web page to visualize an analysi
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
@@ -39,15 +29,15 @@ Using HTML and Bootstrap I built and deployed a web page to visualize an analysi
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![plot](./Resources/Assets/HomePageScreenShot.png)
-![plot](./Resources/Assets/ComparisonScreenShot.png)
+![ScreenShot](./images/HomePage.png)
 
-In this project we created an interactive and responsive web page to serve as a dashboard to display analysed weather data in a user friendly way. This project was built using HTML5 and Bootstrap to build the frame work then to make it responsive to any screen size. The homepage shares a beif introduction the dashboard and clicking into the visualizations themselves will give a more detailed discription the specific graph.
+In this project, I used HTML, Bootstrap, and Plotly to create an interactive dashboard that displays the bodiversity of a subjects belly button culture. The dashboad reloads for each test subject then displays the demographic information as well as a horizontal bar graph and a bubble chart.
 
 ### Built With
 
 * [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
 * [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
+* [Plotly](https://plotly.com/javascript/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -60,63 +50,66 @@ It is important to make sure that you have these files refrenced in the head of 
 
 CSS
   ```sh
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384 MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   ```
-JS
-  ```sh
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  ```
-
-
+  
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/JohnShuford/Web-Design-Challenge
+   git clone https://github.com/JohnShuford/Plotly-Challenge.git
    ```
-2. Get to editing the HTML files in your favorite text editor! I recomend [Visual Studio Code](https://code.visualstudio.com/)
+2. Get to editing the HTML and JS files in your favorite text editor! I recomend [Visual Studio Code](https://code.visualstudio.com/)
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+### Plotly
 
-Here is a code example of a bootstrap navigation bar! They are faily simple to use and customize to any need you may have. Just make sure that you are calling all of the requisite files in the header of your HTML page.
+Here is a code example of a function that will render a horizontal bar graph with json files that are pulled in.
 
 ```sh
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="index.html">
-        <div class="box skyblue">
-          <img src="Resources/Assets/globe2.svg" width="25" height="25" class="d-inline-block align-top" alt="" loading="lazy">
-          Latitude
-        </div>
-      </a>
-      </button>
-      <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active mr-auto">
-            <a class="nav-link" href="docs/comparisons.html">Comparisons<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="docs/data.html">Data<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle" href="comparisons.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Plots
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="docs/vsCloudiness.html">vsCloudiness</a>
-              <a class="dropdown-item" href="docs/vsHumidity.html">vsHumidity</a>
-              <a class="dropdown-item" href="docs/vsTemprature.html">vsTemprature</a>
-              <a class="dropdown-item" href="docs/vsWindSpeed.html">vsWindSpeed</a>
-            </div>
-          </li>
-        </ul>
-      </div>
+function buildGraph (idNumber) {
+    // filter through the samples
+    d3.json('samples.json').then((data) => {
+        // getting the metadata
+        var sampleData = data.samples;
+
+        // filtering metadata along the idNumber
+        var filtered = sampleData.filter(d => d.id == idNumber);
+
+        // getting the otu ids, sample values and otu labels
+        var otuIds = filtered[0]['otu_ids'];
+        var sampleValues = filtered[0]['sample_values']
+        var otuLabels = filtered[0]['otu_labels']
+        
+        // Horizontal Bar Chart
+        var barTrace = {
+            x: sampleValues.slice(0,10).reverse(),
+            y: otuIds.map(otu_ids => `OTU ${otu_ids}`).slice(0,10).reverse(),
+            type: 'bar',
+            orientation: "h",
+            text: otuLabels.slice(0,10).reverse(),
+            marker: {
+              color: 'rgb(112, 148, 219)'
+            }
+        };
+
+        var barData = [barTrace];
+
+        var barLayout = {
+            title: "Top Bacteria per Belly Button",
+            xaxis: {title: "Sample Value"},
+            yaxis: {title: "OTU ID's"}
+        };
+
+        Plotly.newPlot('bar', barData, barLayout);
+    });
+
+}
 ```
 
-For more Bootstrap documentation follow this link! https://getbootstrap.com/docs/4.1/getting-started/introduction/
+For more information on Plotly and examples of some more cool graphs, follow this link. https://plotly.com/javascript/#basic-charts
 
 
 <!-- CONTACT -->
