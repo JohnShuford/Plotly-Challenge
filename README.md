@@ -1,6 +1,6 @@
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/john-shuford-data-analyst/]
+[![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/john-shuford-data-analyst/)
 
-In this challenge we were tasked with creating an interactive dash board to represent the bellybutton bacteria found inside the navels of the study participants [Here](https://johnshuford.github.io/Web-Design-Challenge/)!
+In this challenge we were tasked with creating an interactive dash board to represent the bellybutton bacteria found inside the navels of the study participants. You can take a look at the live and interactive page [Here.](https://johnshuford.github.io/Web-Design-Challenge/)!
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
